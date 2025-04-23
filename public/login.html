@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+       
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+       
+        h1 {
+            color: #333;
+            margin-bottom: 24px;
+        }
+       
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+       
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #555;
+        }
+       
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+       
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+       
+        button:hover {
+            background-color: #45a049;
+        }
+       
+        .clear-btn {
+            background-color: #f44336;
+            margin-top: 15px;
+        }
+       
+        .clear-btn:hover {
+            background-color: #d32f2f;
+        }
+       
+        .message {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="button" id="playBtn">PLAY</button>
+            <button type="button" id="clearBtn" class="clear-btn">Clear Storage</button>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const playBtn = document.getElementById('playBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const messageEl = document.getElementById('message');
+            const loginForm = document.getElementById('loginForm');
+           
+            // Check if credentials exist in localStorage
+            const savedUsername = localStorage.getItem('username');
+            const savedPassword = localStorage.getItem('password');
+           
+            if (savedUsername && savedPassword) {
+                document.getElementById('username').value = savedUsername;
+                document.getElementById('password').value = savedPassword;
+                messageEl.textContent = 'Welcome back! Your credentials are loaded.';
+            }
+           
+            // Save credentials to localStorage
+            playBtn.addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+               
+                if (username && password) {
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('password', password);
+                    messageEl.textContent = 'Credentials saved successfully!';
+                    messageEl.style.color = '#4CAF50';
+                   
+                    // Here you would typically redirect to the game page
+                    // window.location.href = '/game.html';
+                } else {
+                    messageEl.textContent = 'Please enter both username and password!';
+                    messageEl.style.color = '#f44336';
+                }
+            });
+           
+            // Clear localStorage
+            clearBtn.addEventListener('click', function() {
+                localStorage.removeItem('username');
+                localStorage.removeItem('password');
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                messageEl.textContent = 'LocalStorage cleared!';
+                messageEl.style.color = '#f44336';
+            });
+           
+            // Prevent form submission (we're handling with button click)
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>

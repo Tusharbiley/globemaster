@@ -11,6 +11,25 @@
   animation: appear 1s forwards;
 }
 
+/* Example for styling the logout button */
+.logoutBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logoutBtn:hover {
+    background-color: #d32f2f;
+}
+
+
 .exit {
   position: absolute;
   top: 1.5vh;
@@ -483,4 +502,4 @@
   cursor: pointer;
   padding: .7rem 2rem;
   border-radius: 2rem;
-}
+}  

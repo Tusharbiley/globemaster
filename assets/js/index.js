@@ -1,6 +1,8 @@
 import {
     addPlayBtn,
-    removePlayBtn
+    removePlayBtn,
+    addLogoutBtn,
+    removeLogoutBtn,  // Importing logout button functionality
 } from './buttons.js';
 
 import {
@@ -8,30 +10,16 @@ import {
 } from './spin.js';
 
 export const initialZoom = () => {
-    if (window.innerWidth < 600) {
-        return 1;
-    } else {
-        return 1.5;
-    }
+    return window.innerWidth < 600 ? 1 : 1.5;
 };
 
 export const worldviewFilters = [
     ["has", "color_group"],
-    ["match", ["get", "disputed"],
-        ["true"], false, true
-    ],
-    ["match", ["get", "worldview"],
-        ["RU"], false, true
-    ],
-    ["match", ["get", "worldview"],
-        ["CN"], false, true
-    ],
-    ["match", ["get", "worldview"],
-        ["MA"], false, true
-    ],
-    ["match", ["get", "worldview"],
-        ["AR"], false, true
-    ]
+    ["match", ["get", "disputed"], ["true"], false, true],
+    ["match", ["get", "worldview"], ["RU"], false, true],
+    ["match", ["get", "worldview"], ["CN"], false, true],
+    ["match", ["get", "worldview"], ["MA"], false, true],
+    ["match", ["get", "worldview"], ["AR"], false, true]
 ];
 
 const createMapObject = (callback) => {
@@ -73,7 +61,6 @@ const createMapObject = (callback) => {
 };
 
 const addTilesetSource = (map) => {
-
     map.addSource('country-boundaries', {
         type: 'vector',
         url: 'mapbox://mapbox.country-boundaries-v1',
@@ -93,25 +80,27 @@ let gameFile;
 
 export const startGame = (map) => {
     addPlayBtn(() => {
-
         if (!gameFile) {
-            gameFile = import('./game.js'); 
+            gameFile = import('./game.js');
         }
         gameFile.then(module => {
             removePlayBtn();
+            removeLogoutBtn();
             module.game(map);
         });
     });
     addRotation(map);
-};
+    addLogoutBtn();
+      // Adding the logout button
+}; 
 
 
 window.document.onload = 
-        $('body').on('touchcancel', e => e.preventDefault());
-        createMapObject((map) => {
-            addMapIntroAnimation();
-            $('#preMapContainer').remove();
-            startGame(map);
+    $('body').on('touchcancel', e => e.preventDefault());
+
+
+createMapObject((map) => {
+    addMapIntroAnimation();
+    $('#preMapContainer').remove();
+    startGame(map);
 });
-
-

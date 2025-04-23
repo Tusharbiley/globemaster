@@ -1,0 +1,21 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+
+  "repository": {
+    "type": "module",
+    "url": "https://github.com/Tusharbiley/globemaster.git"
+  },
+  "author": "tushar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tusharbiley/globemaster/issues"
+  },
+  "homepage": "https://github.com/Tusharbiley/globemaster#readme",
+  "description": ""
+}

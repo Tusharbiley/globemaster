@@ -49,7 +49,7 @@ const updateElements = () => {
     $('#howToPlayCanvas').remove();
     $('#regionCanvas').remove();
 
-    $('h1').empty().removeClass('question').removeClass('choose').addClass('title').text('map it!');
+    $('h1').empty().removeClass('question').removeClass('choose').addClass('title').text('GlobeMaster!');
 
     $('#countryLabel').remove();
     $('#checkmarks').remove();

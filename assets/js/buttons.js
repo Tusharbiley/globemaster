@@ -3,6 +3,7 @@ import { restartRound } from "./round.js";
 
 export let isMobile = false;
 
+
 export const addPlayBtn = (callback) => {
     isMobile = false;
     $('body').append('<div id="playBtn" class="playBtn">PLAY</div>');
@@ -13,6 +14,16 @@ export const addPlayBtn = (callback) => {
 export const removePlayBtn = () => {
     $('#playBtn').remove();
 };
+
+export const addLogoutBtn = () => {
+  $('body').append('<a id="logoutBtn" class="logoutBtn" href="https://tusharbileyy.github.io/GlobeMaster/">Logout</a>');
+};
+
+
+export const removeLogoutBtn = () => {
+    $('#logoutBtn').remove();
+};
+
 
 export const addRegionBtns = () => {
     $('body').append('<div id="regionCanvas" class="regionCanvas"></div>');
@@ -49,4 +60,4 @@ export const addStarIcon = (map) => {
     $('#star').click( function() {
         showHighScores(map);
     });
-};
+}; 
